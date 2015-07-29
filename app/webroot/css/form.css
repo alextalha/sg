@@ -1,0 +1,259 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08/12/2014, 14:44:18
+    Author     : t3394235
+*/
+
+
+.content-content {
+  width: 95%;
+  height: 100%;
+  margin-top: 9px;
+  margin: 0 auto;
+}
+
+.content-inputs {
+    width: 100%;
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 6px;
+    padding-left: 5px;
+    padding-right: 7px;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;       
+}
+
+.content-edit {
+    width: 100%;
+    display: block;
+    padding-top: 5px;
+    padding-bottom: 6px;
+    padding-left: 5px;
+    padding-right: 7px;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;      
+}
+
+.botoes_form-save {
+    border-radius: 4px;
+    color: #888888;
+    cursor: pointer;
+    display: -moz-inline-grid;
+    float: right;
+    font-size: 11px;
+    line-height: 10px;
+    margin-bottom: 0;
+    padding: 9px;
+    position: relative;
+    right: 32px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
+.botoes_form > i {
+    display:block;
+}
+
+
+.tbody_filtro > tr > td {
+    width: 342px;
+}
+
+
+.botoes_form {
+    border: medium none;
+    color: #888888;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 25px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+.botoes_form:hover{
+    background-color:#EDEDED;
+    border-radius: 4px;
+    
+    
+}
+
+.grupo_head{
+    position:relative;
+    width: 100%;
+
+}
+
+.tbody_filtro {
+    height: 109px;
+    overflow-y: scroll;
+    position: absolute;
+    top: 28px;
+    width: 106%;
+}
+
+.tbody_filtro > tr > td > input{
+    float:left;
+    width:10px;
+}
+
+.box{
+    width:100px;
+    height:180px;
+    background-color: red;
+    margin:10px;
+    display:inline-block
+}
+
+.odd_form{
+    background-color:  #EDEDED;
+}
+
+.even_form {
+    background-color: #f4f4f4;
+}
+
+.grid_download_botoes{
+    background-color: gray;
+    color:white;
+    
+}
+
+/*
+.download {
+    display: block;
+    float: left;
+    margin: 1px 6px 0 -5px;
+    padding: 3px;
+    position: relative;
+}
+*/
+.content-inputs > .control-group {
+    
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-horizontal .help-inline {
+    display: block;
+    font-size: 11px;
+    font-style: italic;
+    width: 100%;
+}
+
+.form-actions {
+    padding: 0;
+    margin-left:10px;
+    border:0;
+    background:none;
+}
+
+.form-horizontal .form-actions {
+    padding: 0; 
+    margin-top: 10px;
+}
+
+.form-horizontal .control-label {
+    float: none;
+    text-align: left; 
+    width: 100%;
+}
+
+.form-horizontal .controls {
+    width: 100%;
+    margin:0;
+}
+
+.form-horizontal .controls input{
+    width: 100%;
+    height: 30px;
+    float: left;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;     
+}
+
+.form-horizontal .controls input.datepick{
+    width: 90%;
+}
+
+.form-horizontal .controls input[type="checkbox"]{
+    float: left;
+}
+
+.form-horizontal .controls select{
+    width: 100%;
+    float: left;
+}
+
+.form-horizontal .controls textarea{
+    width: 100%;
+    float: left;
+    resize: none;
+}
+
+.form-horizontal .controls > div{
+    width: 100%;
+    float: left;
+}
+
+.form-horizontal .control-group{
+    
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 0;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;    
+}
+
+.subform {
+    background-color: #EBEBEB;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 98.5%;
+    min-height: 110px;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+#GrupoAddForm > div > div.subform{
+    height: 200px;
+}
+#GrupoEditForm > div > div.subform{
+    height: 200px;
+}
+
+.subtable {
+    background-color: #EBEBEB;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 98.5%;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+.modal_novo{
+    
+    position: relative;
+    float: right;
+}

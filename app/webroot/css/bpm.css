@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13/01/2015, 18:05:48
+    Author     : T3394235
+*/
+
+
+
+#escondeframe {
+    background-color: #d8d8d8;
+    height: 856px;
+    left: -264px;
+    position: absolute;
+    top: -7px;
+    width: 373px;
+    z-index: 1;
+}
+
+
+#innerdiv {
+    height: 856px;
+    left: -346px;
+    position: relative;
+    top: 4px;
+    width: 1809px;
+}
+

@@ -1,0 +1,100 @@
+<div id="modal_excluir" title="Confirmação">Tem certeza que deseja excluir o processo?
+	<div id="loading"><?php echo $this->Html->image('loading.gif');?></div>
+</div>
+<?php
+echo $this->element('tabela-cabecalho-superior-com-paginacao',array('tabela'=>array(
+            'titulo'=>__('Processos'),
+            'barra_filtro' => $this->element('filtro_drop_box',array(
+            'nome'       => 'processo',
+            'barra_menu' => $this->element('icon-novo-filtro',array('nome'=>'processo','url'=>$this->Html->url(array("controller"=>"processos","action"=>"add")))),
+            'filtros'    => array(
+            
+		array('text'=>'ID',                     'name'=>'Processo.id',          'type'=>'num'),
+		array('text'=>'Grupo',                  'name'=>'Grupo.id',            'type'=>'select'),
+		array('text'=>'Nome do processo',       'name'=>'Processo.nome',        'type'=>'text'),
+		array('text'=>'Descrição do processo',  'name'=>'Processo.descricao',   'type'=>'text'),
+		array('text'=>'Duração (em dias)',      'name'=>'Processo.duracao',     'type'=>'num'),
+		array('text'=>'Versão',                 'name'=>'Processo.versao',      'type'=>'num'),
+		array('text'=>'Ativo',                  'name'=>'Processo.ativo',       'type'=>'boolean'),
+		                
+                ),
+            'fields'     => $fields
+            )
+        ),    
+
+	'colunas'=>array(
+		array('titulo'=>'ID','chave'=>'Processo.id','format'=>''),
+		array('titulo'=>'Grupo','chave'=>'Grupo.nome','format'=>''),
+		array('titulo'=>'Nome do processo','chave'=>'Processo.nome','format'=>''),
+		array('titulo'=>'Descrição do processo','chave'=>'Processo.descricao','format'=>''),
+		array('titulo'=>'Duração (em dias)','chave'=>'Processo.duracao','format'=>''),
+		array('titulo'=>'Versão','chave'=>'Processo.versao','format'=>''),
+		array('titulo'=>'Ativo','chave'=>'Processo.ativo',  'format'=>'$this->element("icon-ativar",array("id"          => $elemento_conteudo["Processo"]["id"],"controller"=>"processos","ativo"=>"%%%"))'),
+		array('titulo'=>'Ações','chave'=>'Processo.id',     'format'=>'$this->element("icon",       array("icon"        => "copy","text" => "","title"=>"Cadastrar nova demanda deste processo","url"=>$this->Html->url(array("controller"=>"demandas","action" =>"add",%%%))))'),
+		array('titulo'=>' ','chave'=>'Processo.id',         'format'=>'$this->element("icon",       array("icon"        => "tasks","text" => "","title"=>"Ver demandas em andamento deste processo","url"=>$this->Html->url(array("controller"=>"demandas","action" =>"index",%%%))))'),
+		array('titulo'=>' ','chave'=>'Processo.id',         'format'=>'$this->element("icon-view",  array("id"          => "%%%","controller"=>"processos","url"=>true))'),
+		array('titulo'=>' ','chave'=>'Processo.id',         'format'=>'$this->element("icon-delete",array("controller"  => "processos","id" => "%%%"))'),
+	),
+	'linhas'=>$processos
+        
+))); 
+
+//debug( $processos );
+?>
+<script type="text/javascript">
+$(function() {
+    var excluir_id;
+    var modal_excluir = $("#modal_excluir").dialog({
+        autoOpen: false,
+        resizable: false,
+        draggable: true,
+        modal: true,
+        width:'auto',
+        buttons: {
+            'Sim': function() {
+                console.log(excluir_id);
+                $("#loading").show();
+                if (excluir_id) $.post(myBaseUrl+"processos/delete/"+excluir_id).done(function() {
+                    location.reload();
+                });
+                excluir_id = null;
+            },
+            'Não': function() {
+                $(this).dialog("close");
+            }
+      }
+    });
+    
+    viewControls( <?php echo json_encode( $processos, JSON_FORCE_OBJECT ); ?> );
+
+    $(".excluir_processos").on("click",function(e) {
+        
+        e.preventDefault();
+        excluir_id = $(this).prop('id');
+        modal_excluir.dialog("open");
+        $("#loading").hide();
+        
+    });
+    
+    $(".excluir_processos_disable").on("click",function(e){
+        
+        e.preventDefault();
+        alert( "Existem demandas deste processo, exclusão não permitida!" );
+    });
+    
+    function viewControls( obj ){
+        
+        if( !obj || obj === "" ){return false;}
+        $.each( obj, function( i, v ){
+            
+            if(  !$.isEmptyObject( v.Demanda ) ){
+                
+                $.each( v.Demanda, function( y, x ){
+                    
+                    $( "a#" + x.processo_id + ".excluir_processos" ).removeClass( "excluir_processos" ).addClass( "excluir_processos_disable" );
+                });          
+            }
+        });
+    }
+});
+</script>

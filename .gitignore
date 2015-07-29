@@ -1,0 +1,13 @@
+.svn*
+Plugin*
+build.properties
+build.xml
+CONTRIBUTING.md
+readme.textile
+outros/*
+cakephp-2.4.2*
+app/tmp/*
+app/files/*
+app/Config/database.php
+app/Config/email.php
+

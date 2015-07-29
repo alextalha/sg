@@ -1,0 +1,428 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/12/2014, 20:17:09
+    Author     : T3394235
+*/
+
+.content-filtro {
+    background-color: #efefef;
+    border-radius: 5px;
+    left: 33px;
+    position: relative;
+    top: 3px;
+    width: 94.8%;
+}
+
+
+.title-sortable {
+    font-size: 12px;
+    margin-left: 13px;
+    position: relative;
+    top: 5px;
+    font-weight: bold;
+}
+
+div.filtro_option_date > span > div {
+    
+    margin-bottom: 21px;
+    margin-left: 9px;
+    margin-top: 0;
+}
+
+.areaConect {
+  position: relative;
+  height: 140px;
+  background-color: #f6f6f6;
+  border: 1.2px solid #d8d8d8;
+  border-radius: 6px;
+  float: left;
+  left: 9px;
+  padding: 3px 3px 3px 3px;
+  top: 4px;
+  z-index: 99;
+  overflow-y: auto;
+  width: 96%;
+}
+
+.areaConect > div {
+
+    display: table-cell;
+    width: 172px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;         
+}
+
+.areaConect >  label {
+    display: inline;
+    padding-right: 0px;
+    padding-top: 0px;
+}
+
+.areaConect >  input {
+
+    height: 21px;
+    margin-right: 2px;
+    display: block;
+}
+
+.areaConect >  select{
+
+    width: 170px;
+    height: 23px;
+    margin-right: 2px;
+}
+
+.toogle-image {
+  float: right;
+  width: 2%;
+  margin-left: 0;
+  top: 60px;
+  position: relative;
+  cursor:pointer;
+}
+
+
+.filtro_option_box {
+  position: relative;
+  right: 10px;
+  top: -5px;
+  width: 96%;
+  z-index: 1;
+}
+
+
+.scrollable-menu {
+    height: auto;
+    max-height: 133px;
+    overflow-x: hidden;
+    overflow-y:auto;
+}
+
+.list{
+
+    position: relative;
+    /*height: 22px; */
+    width: 170px;
+    overflow: hidden;
+    /* z-index: 9; */
+    /*background-color: #F00; */
+}
+
+.list:hover{
+
+    cursor: pointer;
+}
+
+table.table {
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+}
+
+tbody.list {
+    height: 129px;
+    overflow-y: auto;
+}
+
+thead.list_thead ,
+tbody.list, tbody.list > tr ,
+tbody.list > tr > td, thead.list_thead > th { display: block; width:  100% }
+
+tbody.list > tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.list_thead > th {
+    height: 30px;
+
+    /*text-align: left;*/
+}
+
+thead.list_thead {
+    /* fallback */
+    width:100%;
+}
+
+thead.list_thead > tr {
+    border-bottom: 1px solid;
+    height: 32px;
+    padding: 0;
+    position: relative !important;
+    width: 100% !important;
+}
+
+
+tbody.list > tr > td , .list_thead > tr{
+    float: left;
+    padding: 2px;
+    width: 100%;
+}
+
+
+.list_thead > tr {
+    width:100%;
+    background-color:white;
+}
+
+.list_thead > tr > th {
+    border:none !important;
+    padding:4px;
+    margin-top: 5px;
+}
+
+
+.remove_box_filter{
+    position:relative;
+    float:right;
+}
+
+.divisor {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-mac-chrome-inactive -moz-html-cellhighlight -moz-use-text-color #cccccc;
+    border-image: none;
+    border-style: none none none groove;
+    border-width: 0 0 0 3px;
+    display: -moz-inline-grid;
+    height: 21px;
+    margin-left: 10px;
+    margin-right: 0;
+    margin-top: 3px;
+    vertical-align: initial;
+}
+
+.opcoes_filtro {
+    
+    display: flex;
+    width: 94.8%;
+    float: left;
+    margin-left: 30px;
+    margin-top: 10px;
+
+}
+
+.opcoes_filtro div{
+    
+    position: relative;
+    display: inline-table;
+}
+
+.table-filtro {
+    float: right;
+    margin-right: 17px;
+    position: relative;
+    width: 100%;
+      z-index: 99999;
+}
+
+
+.novo-cadastro{
+
+    float: right;
+    right: 0;
+}
+
+.expand-vertical-table {
+    position: relative;
+    text-align: center;
+    top: 4px;
+    cursor: pointer;
+}
+
+.text-center > img {
+    margin:0 auto;width: 29%;
+    cursor:pointer;
+}
+
+input{
+    width: 177px;
+    height: 19px;
+    
+}
+
+
+.opcoes_filtro .btn-separator {
+    background: #adadad none repeat scroll 0 0;
+    content: " ";
+    height: 35px;
+    position: relative;
+    top: 7px;
+    width: 1px;
+}
+
+
+.opcoes_formulario{
+    display: flex;
+    width: auto;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.opcoes_formulario div{
+    
+    display: inline-table;
+}
+
+input.checkbox_filter {
+    
+    left: 1px;
+    margin: 0 6px;
+    position: relative;
+    top: 0;
+    width: 15px !important;
+}
+
+.fa-arrow-rightt, .fa-arrow-leftt {
+  background: url("../imagens/setas.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  left: -3px;
+  position: relative;
+  cursor: pointer;
+}
+.filter div {
+
+    background-color: #f6f6f6;
+    border-radius: 4px;
+    margin-bottom: 0;
+}
+
+
+.date-filter label {
+    
+    float: left;
+    margin-left: 6px;
+    margin-right: 5px;
+    margin-top: 4px;
+    width: 20px;
+}
+
+.date-filter > input {
+    width:  88px !important;
+}
+.date-filter .ui-datepicker-trigger{
+    
+    position: relative ;
+}
+
+div.comum > span > div.filter_comum{
+    
+    font-size: 11px;
+    position: relative;
+    width: 95%;
+    left: 10px;
+}
+
+.filter_comum {
+
+    font-size: 11px;
+    position: relative;
+    width: 95%;
+    left: 0px;
+}
+
+.filter_comum span{
+    position: relative;
+    float: right;
+    /* top: 3px;
+    right: 2px; */
+}
+
+.comum input {
+  width: 92%;
+  height: 19px;
+  position: relative;
+  top: 7px;
+}
+
+
+.filter-new {
+    left: 291px;
+    position: relative;
+    top: 5px;
+}
+
+.filter{
+
+    width: 450px;
+}
+
+.filtro_option_date {
+  padding: 3px;
+  border: 1px solid #c2c2c2;
+  width: 156px;
+}
+
+.date-filter > button {
+  position: relative;
+  top: -7px;
+  left: 5px;
+}
+
+.comum {
+    
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border: 1px solid #ccc;
+    width: 200px;
+    height: 75px;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;      
+}
+
+div.comum_select > span > div.filter_comum{
+    
+    font-size: 11px;
+    position: relative;
+    width: 95%;
+    left: 10px;
+}
+
+.comum_select {
+    
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border: 1px solid #ccc;
+    width: 250px;
+    height: 115px;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;      
+    
+}
+
+.comum_ {
+    border: 1px solid #ccc;
+    border-radius: 9px;
+    height: 74px !important;
+    width: 181px;
+}
+
+.icon-opcoes-filtro {
+    color: #6c6c6c;
+    float: right;
+    position: relative;
+}
+
+.icon_remove{
+    color: #6c6c6c;
+    float: right;
+    position: relative;
+}

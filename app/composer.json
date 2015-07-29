@@ -1,0 +1,11 @@
+{
+    "require": {
+        "phpunit/phpunit": "*",
+        "phpunit/phpunit-selenium": "*",
+        "phpunit/phpunit-skeleton-generator": "*",
+        "phpunit/dbunit": "*",
+        "phpunit/phpunit-story": "*",
+        "phpunit/php-invoker": "*",
+        "phpunit/phpunit-mock-objects": "*"
+    }
+}

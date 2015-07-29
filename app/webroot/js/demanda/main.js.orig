@@ -1,0 +1,207 @@
+/* 
+ * by furious
+ */
+$(document).ready(function(){
+
+    var r    = getAction();
+    setOnLoad();
+
+    $( "#DemandaProcessoId" ).change(function(){
+        
+        if( $(this).val() === "" ){
+            
+            clearGrid();
+            return false;
+        }
+        
+        var atividade = changeProcesso( $( this ).val(), r.tipo.toString(), $( "#DemandaDataInicio" ).val(), "1" );
+        
+        if( atividade ){
+            
+            $( '#atividades' ).treegrid( 'loadData', atividade );
+            
+        } else {
+            
+            clearGrid();
+            return false; 
+        }
+    });
+    
+    $( "#DemandaDataInicio" ).change(function(){
+        
+        var resp = confirm("Deseja propagar datas das atividades?");
+        if ( !resp ) { return false; }
+
+        var atividade = changeProcesso( $( "#DemandaProcessoId" ).val(), r.tipo.toString(), $( this ).val(), "1" );
+        
+        if( atividade ){
+            
+            $( '#atividades' ).treegrid( 'loadData', atividade );
+            
+        } else {
+            
+            clearGrid();
+            return false; 
+        }
+        
+    });
+
+    $("table.datagrid-btable > tbody > tr > td").each(function () {
+        
+        if( r.tipo.toString() === "add" ){}else{
+            
+            if ($(this).find('.datagrid-cell-c2-status').text() === 'Concluída') {
+
+                $(this).parent().css({'background-color': '#BCEE68'});
+            }
+            if ($(this).find('.datagrid-cell-c2-status').text() === 'Cancelada') {
+
+                $(this).parent().css({'background-color': '#FF7F50', 'color': '#FFFFFF'});
+            }
+            if ($(this).find('.datagrid-cell-c2-status').text() === 'Em Andamento') {
+
+                $(this).parent().css({'background-color': '#ADD8E6'});
+            }
+            if ($(this).find('.datagrid-cell-c2-status').text() === 'Planejada Atrasada') {
+
+                $(this).parent().css({'background-color': '#EEEE00'});
+            }
+            if ($(this).find('.datagrid-cell-c2-status').text() === 'Atrasada') {
+
+                $(this).parent().css({'background-color': '#AB82FF', 'color': '#FFFFFF'});
+            }
+        }
+    });
+        
+    
+    $("#submit_Demanda").click(function(){
+        
+        var options = $( '#atividades' ).treegrid('options');
+        
+        if( options.otherkey ){
+            
+            $("#DemandaAtividadesJson").val( JSON.stringify( options.otherkey.atividades ) );
+        }
+    });
+    
+    function changeProcesso( id, tipo, data, propaga ){
+
+        if( id === "" ){ return false; }
+        
+        var options = $('#atividades').treegrid('options');
+        var url = ( tipo === "add" ) ? myBaseUrl + "processos/getProcess/" : myBaseUrl + "demandas/getDemanda/";
+        var info = {date: data, processo: id, propaga: propaga};
+
+        if (options.otherkey) {
+
+            if (parseInt(options.otherkey.id) === parseInt(id)) {
+
+                url = ( tipo === "add" ) ? myBaseUrl + "processos/updateProcess/" : myBaseUrl + "demandas/updateDemanda/";
+                info = {date: data, atividades: options.otherkey.atividades, propaga:propaga};
+            }
+        }
+
+        var result = $.ajax({
+            url: url,
+            type: "post",
+            data: info,
+            dataType: "json",
+            global: false,
+            async: false,
+            success: function (data) {
+
+                return data;
+            }
+
+        }).responseJSON;
+
+        if (result) {
+
+            var key = (result.length - 1);
+            $('#DemandaDataPrevistaTermino').val(result[key].data_prevista_termino);
+            var others = {id: id, data: $("#DemandaDataInicio").val(), atividades: result};
+            $('#atividades').treegrid({otherkey: others});
+
+            return result;
+        } else {
+            return false;
+        }        
+    }
+    
+    function setOnLoad(){
+
+        var id = ( r.id ) ? r.id : $( "#DemandaProcessoId" ).val();
+        
+        if( $( "#DemandaDataInicio" ).val() === "" ){
+            
+            $( "#DemandaDataInicio" ).val( getDateNow() );
+        }
+
+        var atividade = changeProcesso( id, r.tipo.toString(), $( "#DemandaDataInicio" ).val(), "1" );
+        
+        if( atividade ){
+            
+            $( '#atividades' ).treegrid( 'loadData', atividade );
+            
+        } else {
+            
+            clearGrid();
+            return false; 
+        }
+    }
+    
+    function clearGrid(){
+
+        var node = $('#atividades').treegrid('getData');
+        
+        if( node.length > 0 ){
+            
+            for( i = node.length; i > 0; i--){
+
+                $('#atividades').treegrid( 'remove', node[0].id );
+                
+            }
+        }
+    }
+    
+    function getAction(){
+        
+        var url = window.location.pathname;
+        var result;
+        
+        if( url ){
+            
+            var url_array    = url.split( "/" ).reverse();
+            var options;
+            
+            url = url_array[0];
+
+            if( $.isNumeric( url ) ){
+                
+                options = {tipo:url_array[1],id:url_array[0]};
+            } else {
+                options = {tipo:url_array[0],id:""};
+            }
+            result = options;
+            if( result.tipo.toString() !== 'add' ){
+
+                $( "#DemandaProcessoId" ).attr("disabled", true);
+
+            }        
+        }
+        
+        return result;
+    }
+
+    function getDateNow(){
+        
+        var hoje = new Date();
+        var dia  = hoje.getDate();
+        var _mes = (parseInt(hoje.getMonth())+1);
+        var mes  = ( _mes.toString().length === 1 ) ? "0"+_mes : _mes;
+        var ano  = hoje.getFullYear();
+        var data = dia+"/"+mes+"/"+ano;
+        
+        return data;
+    }
+});

@@ -1,0 +1,70 @@
+<?php
+
+$subform   = array();
+$subform[] = $this->element("tabela-cabecalho-superior", array('tabela'=>array(
+		'titulo'=>'Permissões',
+		'colunas'=>array(
+			array('titulo'=>__("Controller"),'chave'=>'controller','format'=>''),
+			array('titulo'=>__("Action"),'chave'=>'action','format'=>''),
+			array('titulo'=>__("Conteúdo"),'chave'=>'conteudo_id','format'=>''),
+			array('titulo'=>__("Descrição"),'chave'=>'descricao','format'=>''),
+			array('titulo'=>__("Permitido"),'chave'=>'allowed','format'=>'$this->Form->input($elemento_conteudo["controller"].".".$elemento_conteudo["action"].".".$elemento_conteudo["conteudo_id"].".".$elemento_conteudo["id"],array("type"=>"checkbox","class" => "optvals","checked"=>"%%%"))'),
+		),
+		'linhas'=>$permissoes
+)));
+
+/*
+ * REMOVIDO 2015/05/17 - FELIPE GRAÇA
+if (isset($this->Form->data['Usuario'])) {
+    
+    $subform[] = $this->element('tabela-cabecalho-superior'
+            , array('tabela'=>array(
+                    'titulo'=>'Usuários',
+                    'colunas' => array(
+                        array('titulo' => 'Nome', 'chave' => 'first_name', 'format' => '"%%% ".$elemento_conteudo["last_name"]'),
+                        array('titulo' => 'Cargo', 'chave' => 'Cargo.nome', 'format' => ''),
+                        array('titulo' => 'Login', 'chave' => 'username', 'format' => ''),
+                        array('titulo' => 'E-mail', 'chave' => 'email', 'format' => ''),
+                        array('titulo' => 'Ações', 'chave' => 'id', 'format' => '$this->element("icon-view",array("controller"=>"usuarios","id"=>"%%%"))')
+                    ),
+                    'linhas' => $this->Form->data['Usuario']
+                )));
+}
+*/
+
+echo $this->element('form',array('form'=>array(
+	'titulo'=> __($type.' %s', __('Grupo')),
+	'create'=> 'Grupo',
+<<<<<<< local
+        'window'=> 'modal',
+	'action'=> $type,
+=======
+        //'window'=> 'modal',
+	'action'=>$type,
+>>>>>>> other
+	'inputs'=>array(
+		array('titulo'=>'','chave'=>'id','options'=>array('orientation' =>'row','type'=>'hidden')),
+		array('titulo'=>'Nome','chave'=>'nome','options'=>array('type'=>'text','required' => 'required','control-group-opt' => array('display' => 'row','style'=>'width:50%'))),
+		array('titulo'=>'Alias','chave'=>'alias_name','options'=>array('type'=>'text','control-group-opt' => array('display' => 'row','style'=>'width:50%'))),
+		array('titulo'=>'','chave'=>'allowRegistration','options'=>array('type'=>'hidden','control-group-opt' => array('display' => 'coll','style'=>'width:100%'))),
+                array('titulo'=>'Selecionar Todos','chave'=>'selectall','options'=>array('type'=>'checkbox','control-group-opt' => array('display' => 'coll','style'=>'width:100%')))
+	),
+	'subform' => $subform,
+)));
+?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        $('#GrupoSelectall').click(function(event) {
+            if( this.checked ) {
+                $('.optvals').each(function() {
+                    this.checked = true;
+                });
+            }else{
+                $('.optvals').each(function() {
+                    this.checked = false;
+                });        
+            }
+        });
+    });
+</script>

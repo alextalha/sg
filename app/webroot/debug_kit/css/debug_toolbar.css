@@ -1,0 +1,339 @@
+
+#debug-kit-toolbar {
+    direction: ltr;
+    font-family: helvetica,arial,sans-serif;
+    font-size: 12px;
+    height: 1%;
+    overflow: visible;
+    position: fixed;
+    right: 0;
+    top: 495px;
+    width: 100%;
+    z-index: 10000;
+}
+#debug-kit-toolbar img {
+    border: 0 none;
+    outline: 0 none;
+}
+#debug-kit-toolbar #panel-tabs {
+    border-radius: 8px 0 0 8px;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.5);
+    float: right;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+#debug-kit-toolbar .panel-tab {
+    clear: none;
+    float: left;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+#debug-kit-toolbar .panel-tab > a {
+    background: -moz-linear-gradient(center top , #efefef, #cacaca) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #aaa;
+    border-right: 1px solid #ccc;
+    clear: none;
+    color: #222;
+    display: block;
+    float: left;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0;
+    padding: 6px;
+    text-decoration: none;
+    text-shadow: 1px 1px #eee;
+}
+#debug-kit-toolbar .panel-tab .active {
+    background: -moz-linear-gradient(center top , #f5f5f5, #fff) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+#debug-kit-toolbar .panel-tab > a:hover {
+    background: -moz-linear-gradient(center top , #f5f5f5, #fff) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    text-decoration: underline;
+}
+#debug-kit-toolbar .panel-tab.icon a {
+    padding: 4px;
+}
+#debug-kit-toolbar .panel-tab a.edit-value {
+    display: inline;
+    float: none;
+}
+#debug-kit-toolbar .panel-tab a:hover + .panel-content, #debug-kit-toolbar .panel-tab a + .panel-content:hover {
+    display: block;
+}
+#debug-kit-toolbar .panel-tab.icon a {
+    border-radius: 8px 0 0 8px;
+}
+#debug-kit-toolbar .panel-tab.icon img {
+    display: block;
+}
+#debug-kit-toolbar .panel-content {
+    background: none repeat scroll 0 0 #fff;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.5);
+    color: #000;
+    height: 200px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    top: 28px;
+    width: 100%;
+}
+#debug-kit-toolbar .panel-resize-region {
+    bottom: 14px;
+    left: 0;
+    overflow: auto;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#debug-kit-toolbar .ui-control {
+    background: -moz-linear-gradient(center top , #d6d6d6, #c2c2c2) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #7c7c7c;
+    border-top: 1px solid #afafaf;
+    color: #666;
+    text-align: center;
+    text-shadow: 1px 1px #eee;
+}
+#debug-kit-toolbar .ui-button {
+    border-radius: 5px;
+}
+#debug-kit-toolbar .ui-button:hover {
+    background: -moz-linear-gradient(center top , #c2c2c2, #d6d6d6) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    text-decoration: none;
+}
+#debug-kit-toolbar .panel-resize-handle {
+    bottom: 0;
+    cursor: row-resize;
+    height: 14px;
+    left: 0;
+    line-height: 14px;
+    position: absolute;
+    right: 0;
+}
+#debug-kit-toolbar .panel-toggle {
+    border-left: 1px solid #afafaf;
+    border-right: 1px solid #7c7c7c;
+    display: block;
+    float: right;
+    font-size: 16px;
+    height: 16px;
+    line-height: 14px;
+    margin: 10px 20px 0 0;
+    position: relative;
+    text-decoration: none;
+    width: 16px;
+    z-index: 999;
+}
+#debug-kit-toolbar .panel-content {
+    display: none;
+}
+#debug-kit-toolbar .panel-content p {
+    margin: 1em 0;
+}
+#debug-kit-toolbar .panel-content h2 {
+    margin-top: 0;
+    padding: 0;
+}
+#debug-kit-toolbar .panel-content h3 {
+    margin-top: 1em;
+    padding: 0;
+}
+#debug-kit-toolbar .panel-content .info {
+    border-bottom: 1px dashed #6c6cff;
+    border-top: 1px dashed #6c6cff;
+    padding: 4px;
+}
+#debug-kit-toolbar h1, #debug-kit-toolbar h2, #debug-kit-toolbar h3, #debug-kit-toolbar h4, #debug-kit-toolbar h5, #debug-kit-toolbar th {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #5d1717;
+    font-family: Arial,sans-serif;
+    margin-bottom: 0.6em;
+}
+#debug-kit-toolbar h1 {
+    font-size: 18px;
+}
+#debug-kit-toolbar h2 {
+    font-size: 16px;
+}
+#debug-kit-toolbar h4 {
+    font-size: 14px;
+}
+#debug-kit-toolbar .debug-table {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #eee #eee #eee -moz-use-text-color;
+    border-image: none;
+    border-spacing: 0;
+    border-style: solid solid solid none;
+    border-width: 1px 1px 1px 0;
+    clear: both;
+    margin-bottom: 20px;
+    width: 100%;
+}
+#debug-kit-toolbar .debug-table td, #debug-kit-toolbar .debug-table th {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color -moz-use-text-color -moz-use-text-color #eee;
+    border-image: none;
+    border-style: none none none solid;
+    border-width: 0 0 0 1px;
+    margin: 0;
+    padding: 3px;
+    text-align: left;
+}
+#debug-kit-toolbar table.debug-table th {
+    background: -moz-linear-gradient(center top , #d4d4d4, #c1c1c1) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #bbb;
+    border-left: 1px solid #bbb;
+    color: #222;
+    font-weight: bold;
+    line-height: 16px;
+}
+#debug-kit-toolbar .debug-table tr:nth-child(2n) td {
+    background: none repeat scroll 0 0 #f6f6f6;
+}
+#debug-kit-toolbar .debug-timers .debug-table td:nth-child(2), #debug-kit-toolbar .debug-timers .debug-table th:nth-child(2) {
+    text-align: right;
+}
+#debug-kit-toolbar .code-table td {
+    font-family: monaco,Consolas,"courier new",courier,monospaced;
+    white-space: pre;
+}
+#debug-kit-toolbar .code-table td:first-child {
+    width: 15%;
+}
+#debug-kit-toolbar .code-table td:last-child {
+    width: 80%;
+}
+#debug-kit-toolbar .panel-content.request {
+    display: block;
+}
+#debug-kit-toolbar .neat-array, #debug-kit-toolbar .neat-array li {
+    list-style: outside none none;
+}
+#debug-kit-toolbar .neat-array {
+    background: none repeat scroll 0 0 #ce9e23;
+    list-style: outside none none;
+    margin: 0 0 1em;
+    padding: 1px 2px 1px 20px;
+}
+#debug-kit-toolbar .neat-array .neat-array {
+    border-top: 1px solid #ce9e23;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+#debug-kit-toolbar .neat-array li {
+    background: none repeat scroll 0 0 #fef6e5;
+    border-bottom: 1px solid #ce9e23;
+    border-top: 1px solid #ce9e23;
+    line-height: 1.5em;
+    margin: 0;
+}
+#debug-kit-toolbar .neat-array li:hover {
+    background: none repeat scroll 0 0 #fff;
+}
+#debug-kit-toolbar .neat-array li strong {
+    font-weight: bold;
+    padding: 0 8px;
+}
+#debug-kit-toolbar .neat-array li.expandable {
+    cursor: pointer;
+}
+#debug-kit-toolbar .neat-array .expanded {
+    border-bottom: 0 none;
+}
+#debug-kit-toolbar .neat-array li.expandable.expanded > strong:before {
+    content: "v ";
+}
+#debug-kit-toolbar .neat-array li.expandable.collapsed > strong:before, #debug-kit-toolbar .neat-array li.expandable.expanded .expandable.collapsed > strong:before {
+    content: "> ";
+}
+#debug-kit-toolbar .neat-array li {
+    cursor: default;
+}
+#debug-kit-toolbar .debug-kit-graph-bar, #debug-kit-toolbar .debug-kit-graph-bar-value {
+    border: medium none;
+    height: 10px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+#debug-kit-toolbar .debug-kit-graph-bar {
+    background: none repeat scroll 0 0 #ddd;
+    border-radius: 2px;
+    height: 12px;
+    padding: 2px;
+}
+#debug-kit-toolbar .debug-kit-graph-bar-value {
+    background: -moz-linear-gradient(center top , #77d124, #4b9406) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #4b9406;
+    border-radius: 3px;
+}
+#sqllog-tab td, #sqllog-tab .slow-query-container p {
+    font-family: Monaco,"Consolas","Courier New",Courier,monospaced;
+}
+#debug-kit-toolbar #sqllog-tab a.show-slow {
+    display: block;
+    float: none;
+    margin: 3px;
+}
+#sqllog-tab .slow-query-container p {
+    clear: both;
+    display: block;
+    margin: 20px 0 5px;
+}
+#debug-kit-toolbar #sqllog-tab .panel-content-data a {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+}
+#sqllog-tab .slow-query {
+    background: none repeat scroll 0 0 #e79302;
+    color: #fff;
+    font-size: 9px;
+    padding: 2px;
+    white-space: nowrap;
+}
+#sqllog-tab input[type="submit"] {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    font-family: Monaco,"Consolas","Courier New",Courier,monospaced;
+    font-size: 12px;
+}
+#sqllog-tab input[type="submit"]:hover {
+    color: darkred;
+}
+#debug-kit-toolbar .panel-history {
+    background: none repeat scroll 0 0 #eeffff;
+    display: none;
+}
+#debug-kit-toolbar #history-tab ul {
+    margin: 20px 0 0 20px;
+}
+#debug-kit-toolbar #history-tab li {
+    margin: 0 0 5px;
+}
+#debug-kit-toolbar #history-tab .panel-content-data a {
+    display: block;
+    float: none;
+}
+#debug-kit-toolbar #history-tab a.active {
+    background: none repeat scroll 0 0 #fef6e5;
+}
+#debug-kit-toolbar #history-tab a.loading:after {
+    content: " Loading...";
+    font-style: italic;
+}
+#debug-kit-toolbar.minimized {
+    opacity: 0.75;
+}
+#debug-kit-toolbar.minimized:hover {
+    opacity: inherit;
+}

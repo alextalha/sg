@@ -1,0 +1,193 @@
+/* Forçar campo numberico */
+
+function valida_number(element) {
+
+    if (!/^[0-9]+$/.test(element.val())) {
+        element.val(element.val().replace(/[^0-9]/g, ''));
+    }
+}
+
+
+$(function(){
+          increase_font_size();
+          
+       $("span[title='Ajuda']").on("click", function () {
+        popup_info($('#titulo-controller').text());
+
+
+        $('.dropdown-toggle').dropdown();
+             ativa_campos_jquery();
+        
+    });
+          
+});
+
+
+function increase_font_size(){
+    // elementos para entrarem na regra aumento de fonte 
+    elements_to_increase = ["table a", "table td",".filter_comum","option", "box_date"];
+    
+      $('.fa-stack-1x').on('click',function(){
+        
+        
+       $.each(elements_to_increase, function(index,value) {
+        
+            curSize= parseInt($(value).css('font-size'));
+              
+
+           if(curSize < 18){
+            curSize= parseInt($(value).css('font-size')) + 2;
+              
+              $(value).css('font-size',curSize);
+
+           }
+
+           if(curSize === 17) {
+
+               curSize= parseInt($(value).css('font-size'));
+               curSize-=6;
+               
+             $(value).css('font-size',curSize);
+            
+             
+          }
+         
+       });   // fechando o each
+         
+      
+      });  // fechando o click
+    
+     
+    
+  }  //increase_font_size()
+  
+  
+  
+
+/* chamada para o magnific popup */
+function popup_info(nome){
+        var nome = nome.toLowerCase();
+        nome = $.trim(nome);
+   
+       $.fancybox({
+                'width': '100%',
+                 'height': '100%',
+                 'autoScale': true,
+                 'titlePosition': 'outside',
+                 'transitionIn': 'fade',
+                 'transitionOut': 'fade',
+                 'title' : 'Informação',
+                 'type': 'iframe',
+                 //'href': myBaseUrl+'steps/'+nome+'.html'
+                 'href': myBaseUrl + 'steps/default.html'
+                
+        });
+
+  }
+
+
+function myFunction(ele) {
+    var x = document.getElementById(ele);
+    x.value = x.value.toUpperCase();
+}
+
+function ativa_campos_jquery() {
+
+    $(".chosen-select").chosen({
+        allow_optgroup_search: true
+                //no_results_text: "Sem resultados para ", 
+                //placeholder_text_multiple: "Selecione as opções", 
+                //placeholder_text_single: "== Selecione =="
+    });
+
+    $(".chosen-select_no_search").chosen({disable_search: true});
+    $(".chosen-select-deselect").chosen({allow_single_deselect: true});
+
+    $("[required=required]").parent().parent().find('label:not(:has(*))').prepend('<span class="required-indicator" title="Preenchimento obrigatório"> *</span>');
+
+    $(".datepick").datepicker({
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        inline: true,
+        nextText: 'Próximo',
+        prevText: 'Anterior',
+        changeYear: true,
+        buttonText: "<i class='icon-icon icon-calendar'></i>",
+        showOn: "both",
+        //altField: 'altField',
+        //altFormat: 'yy-mm-dd',
+        //dateFormat: 'yy-mm-dd', 
+        onSelect: function () {
+            $(this).change();
+        }
+    });
+}
+
+function toggleFullScreen(e) {
+    e.preventDefault();
+    $(document).toggleFullScreen();
+
+}
+
+function changeSizeFont(e) {
+
+    e.preventDefault();
+
+    var size_font = $("body").css('font-size');
+
+    alert(size_font);
+
+    if (parseInt(size_font) > 11) {
+
+        $("body").animate({'font-size': '11px'});
+    } else {
+
+        $("body").animate({'font-size': '20px'});
+    }
+}
+
+function loading() {
+
+    $('.load-circle').show();
+}
+
+//by Atalha
+function limpar_filtro(elemento) {
+
+    $(elemento).find(':input').each(function () {
+
+        switch (this.type) {
+
+            case 'password':
+
+            case 'select-multiple':
+
+            case 'select-one':
+
+            case 'text':
+
+            case 'textarea':
+
+                $(this).val('');
+
+                break;
+
+            case 'checkbox':
+
+            case 'radio':
+
+                this.checked = false;
+
+        }
+    });
+}
+
+
+  
+   
+
+  

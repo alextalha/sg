@@ -1,0 +1,212 @@
+25/07
+
+Limpar código das views para Felipe poder alterar layout - Dani
+- Usar elements tabela em todas as ctps
+- Colocar sidebar-menu em todos os controllers
+- Unir add/edit/view em único view 
+
+
+Construir página de visualização de atividades em andamento - Leo
+-- Retirar menu lateral "AÇÕES"
+-- Ao invés de uma tabela só, haverá duas seções:
+1- "Minhas atividades": Atividades em andamento nas quais o usuário logado participe como responsável (atividades.usuario_id)
+                Colunas da tabela:
+                Nome da atividade | Descrição da atividade | Atividade superior | Demanda | Percentual de conclusão | Data de início | Data prevista de término
+                Sem paginação
+
+2- "Outras atividades": Atividades em andamento nas quais o usuário logado participe de forma indireta:
+                - Se ele participar como responsável pela demanda (demandas.usuario_id)
+                - Se ele participar como envolvido da atividade (atividades_usuarios)
+                - Se ele participar como envolvido da demanda (demandas_usuarios)
+                - Se ele participar do grupo responsável pela etapa (etapas.grupo_id)
+                - Se ele participar do grupo responsável pelo processo (processos.grupo_id)
+                Colunas da tabela:
+                Nome da atividade | Usuário responsável |Atividade superior | Demanda | Percentual de conclusão | Data de início | Data prevista de término
+                Com paginação
+Outros detalhes:
+O Nome da atividade será um link para o "Visualizar" (Views/Atividades/view)
+Ordenar as atividades por data prevista de término (atividades.dt_termino ASC) e por percentual de conclusão decrescente (atividades.nr_perc_conc DESC)
+"Em andamento" significa que a atividade ainda não foi concluída nem foi cancelada, ou seja, atividades.dt_conc == null e atividades.dt_canc == null
+
+
+
+--
+
+
+08/08
+
+Grupo de acesso em conteúdo:
+    - Adicionar conteudo_id em user_group_permissions, colocar nome do conteudo em descriçao
+    - Unir conceitos grupo + grupo de acesso: N-N, 
+
+Grupos e permissões - 1 dia
+- Criar nova view de permission por grupo
+- Tradução geral
+- Adicionar cargos na tela de Usuários
+- Permissão de conteúdo se dará pelo grupo (válido para processo, etapa, demanda, atividade, arquivo):
+	- Ao acessar index, mostrar apenas conteúdo a que o usuário logado tem acesso
+	- Ao acessar view, redirecionar para index se o usuário não tiver acesso
+	- Nas comboboxes onde um elemento é escolhido, mostrar apenas os que o usuário logado tem acesso. Mostrar como label se o usuário apenas possuir 1 opção
+        -- Ao cadastrar um processo ou etapa, o usuário só poderá escolher um grupo de que faz parte, exceto se for admin
+
+
+Ações da atividade - < 1 dia
+- Assumir/Delegar Responsabilidade de atividades: adicionar usuario_id na atividade.
+- Concluir atividade: modal para preencher descrição final (opcional). preenche data_conclusao e descricao_conclusao
+- Cancelar atividade: modal para preencher motivo do cancelamento (obrigatório). preenche data_cancelamento e motivo_cancelamento
+
+Add Demanda na tela de Demanda -> abre modal (novo ou existente) -> existente vai pra tela de template index
+
+
+
+Adicionar avisos as etapas (etapas/addAvisos) - < 1 dia
+- Ao lado de cada etapa, na processos/view, coluna "Avisos" com listagem de avisos configurados para a etapa, link "editar"
+- Abre modal com todos os avisos para remover ou adicionar (avisos_etapas)
+- Adicionar novo aviso direto pelo modal (avisos/add)
+- Disparar avisos configurados em todas as ações
+
+- Se uma atividade é cancelada, suas subatividades também o são
+- Se uma atividade é concluída, suas subatividades também o são
+- Se um demanda é cancelado, suas atividades também o são
+- Se um demanda é concluído, suas atividades também o são 
+
+- Dia util ou dia corrido: desconsiderar horas, desconsiderar horario comercial. cadastrar feriados fixos e moveis a partir da pascoa - 1 dia
+
+- Treeview em atividades
+
+
+15/08
+
+
+Arquivos - 1 dia
+- Adicionar arquivos a partir de view de atividade ou de demanda
+- Ao alterar um arquivo (novo upload), não sobrescrever arquivo. Mostrar sempre arquivo mais atual
+- tudo na mesma pasta, nome do arquivo = id_versao
+
+
+- Quando o usuário clicar em "Adicionar Arquivo" abre um modal com arquivos/add
+    - Input type=file para o arquivo
+    - Extensão e content type pode extrair do próprio arquivo
+    - Usuario responsavel é o usuário logado - input hidden
+    - Atividade e Demanda são hidden, virão já preenchidos a partir de onde o usuário clicou
+    - Grava o arquivo na pasta /webroot/files com o nome de arquivo = [id]_[versao]
+- Quando o usuário clicar em "Download", o sistema tem que pegar o arquivo com o [id]_[versao].[extensao] desejado
+- Quando o usuário clicar em "Editar", abre o mesmo modal de arquivos/add
+    - Grava as alterações, aumentando 1 numero na versão
+    - Grava o arquivo na pasta /webroot/files com o nome de arquivo [id]_[nova_versao]
+
+
+
+
+Datas e prazos - 3 dias
+- Ao criar demanda, criar atividades instancias das etapas com datas de acordo com durações
+- Duração de uma etapa é a soma das durações de suas filhas ou a duração de seu prazo. Sempre: atividades superiores aumentam sua duração de acordo com o prazo da nova atividade
+- A data de início de uma atividade é a data de início da demanda (dada pelo usuário) + a duração de todas as atividades anteriores a ela
+- A data de término prevista de uma atividade é sua data de início + sua duração
+- Percentual de conclusão de uma atividade é calculado como a duração de subatividades concluídas / duração total. Demanda também possui percentual de conclusão de todas as atividades.
+- O usuário pode alterar a data de início de etapas que ainda não iniciaram e as datas posteriores alterarão em cascata
+- Se a data de início for prorrogada (pelo usuário ou em cascata de uma prorrogação de outra etapa anterior), a data de término também é prorrogada
+- Quando a última atividade é concluída, a demanda também deve ser concluído
+- Ao cancelar uma atividade, o percentual de conclusão das atividades superiores e da demanda deve ser recalculado
+
+
+
+
+
+Poder criar etapa durante uma atividade: - 2 dias
+- Criar atividade, colocá-la na posição desejada, colocar data e prazo. Pergunta se as datas devem ser recalculadas: atividades posteriores prorrogam sua data de início de acordo com a duração da nova atividade
+corta: Pergunta se deseja alterar processo com essa nova etapa: versiona o processo com nova etapa, altera processo_id da demanda em questão
+
+
+
+
+
+
+
+
+BPO - Business Process Outsourcing
+VAS
+CDR
+clientes não TIM usando CSP 41 == tipo 2, cliente TIM usando outros CSPs == tipo 1
+POI
+CAP - Contas a Pagar
+CAR - Contas a Receber
+LDI - Longa Distância Internacional
+Tipos de terminação: TU_RL, VU_M..
+WHOLESALE
+MEDIAÇÃO
+SCTR - Sistema de Interconexão da TIM
+OPSC - Plataforma de Pré-Pago
+SAP Fiber
+BDOH
+ARBOR
+CLARIFY
+ARPU
+MOU
+SOX
+POP (Procedimentos Operacionais)
+Detraf / Detrat
+
+
+
+ÁREAS
+Co-billing 
+-- Tipo 1
+-- Tipo 2
+Interconexão
+Roaming
+
+
+VERTICAIS   
+Batimento/Conciliação
+--Despesa
+--Receita
+--Disputa
+--Fraude
+Gestão de Informações Operacionais
+--Investigação
+--Automação
+--TI
+Rejeição
+Tarifas /Gestão de Contratos
+-- Nacional
+-- Internacional
+Gestão Fiscal
+
+
+
+
+
+
+
+
+- Adicionar arquivos a partir de view de atividade
+- Tabela de pivot e de treeview não estão com width 100%
+- Loading da treeview deve sobrepor toda a tela, para evitar do usuário ver modais como divs
+- Alterar ordem dos campos dos formularios, para que textarea esteja por último e numa seção separada.
+- colocar ordenação de tabelas no padrão Triad (setinha pra cima em cima da setinha pra baixo)
+- Trocar icone de Ativar para um mais significativo ON/OFF
+
+- colocar datepicker com padrão dd/mm/yyyy
+- Scroll em subform: Scroll deve ser Apenas na Tabela e não na seção toda. o Botão Adicionar e o cabeçalho da Tabela devem ficar fixos
+- scroll em treeview: quando popula pela 1a vez, está sem scroll. depois o scroll horizontal só é mostrado no final do scroll vertical.
+- colocar descrição Nas permissões e ocultar permissões básicas. colocar private alguns métodos.
+- Colocar tooltip em todos os botões, principalmente nos da pivot
+- Alterar botão << da pivot para se tornar aba do painel. Alterar para >> quando estiver escondido
+- Tabela da pivot vem desalinhada da 1a vez que carrega. Realinha quando faz alguma operação
+- Fazer Filtro realizado na pivot ser o mesmo do painel (modal)
+- Criar método de carregar os dados da última consulta a pivot
+- Fazer alerts sumirem após um certo tempo (fade effect)
+- Pré-selecionar grupo da demanda para as atividades
+- Pré-selecionar grupo da atividade superior para as subatividades
+- Propagar usuario responsavel da demanda para todas as atividades sem responsavel
+- No processo, ter 'template' de nome e de descrição para as demandas
+
+Histórico / Auditoria
+Toda ação que gera alteração no banco será gravada
+Página com histórico e Busca
+Adicionar filtros e busca geral
+Filtro em cada index acima de cada coluna
+Busca geral em nome e descrição de processos, etapas, demandas, atividades, arquivos e relatórios - de acordo com perfil de acesso do usuário
+
+Fazer o servidor enviar emails de aviso

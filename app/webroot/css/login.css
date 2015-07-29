@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/12/2014, 17:09:38
+    Author     : T3394235
+*/
+
+label[for=UsuarioRemember][class=control-label]{
+    position:relative;
+    margin-left: 23px;
+    font-family: serif;
+    font-size: 14px;
+}
+
+
+label[for=UsuarioRemember][class=checkbox]{
+    float: left;
+    top: -30px;
+    position: relative;
+    
+}
+/*
+.botao{
+    display:block !important;
+    overflow-y: hidden;
+    top:-29px !important;
+    position: relative !important;
+}
+
+*/
+
+.botao[title="Acessar o sistema"]{
+    display:block !important;
+    overflow-y: hidden;
+    top:-29px !important;
+    position: relative !important;
+}
+
+.botao {
+    display: inline !important;
+    overflow-y: hidden;
+    position: relative !important;
+    top: -1px !important;
+}

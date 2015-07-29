@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/12/2014, 17:56:15
+    Author     : T3394235
+*/
+
+.fa-sort-down:before, .fa-sort-desc:before {
+    content: "";
+    padding-left: 6px !important;
+    padding-right: 2px !important;
+    position: relative;
+    top: -4px ;
+}
+
+.dropdown-menu li > a {
+    background-color: #535353;
+    color: white;
+}
+
+
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus,
+.dropdown-submenu:hover > a {
+    background:none;
+    background-color: #868686;
+}
+
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+    background:none;
+    background-color: #868686;
+}
+
+
+.nav .dropdown.menu_buttons a.home {
+    color: white;
+    line-height: 40px;
+    margin: 0 10px;
+}
+
+.nav .dropdown.menu_buttons a {
+    float:right;
+    display: inline-block;
+    padding: 0;
+}
+
+.nav .dropdown.menu_buttons a.home:hover,.icon-sort-asc:hover,.icon-sort-desc:hover {
+    color:#ffb600;
+}
+
+.dropdown .times-circle i {
+    line-height: 40px;
+    margin: 0 10px;
+    float:right;
+}
+
+.menu_buttons {
+    width:100px;
+}
+
+
+
+.rodape-submenu{
+ height: 68px;   
+}
+
+
+.fa-stack {
+  line-height: 2em !important;
+  height: 2em !important;
+}
+
+
+
+
